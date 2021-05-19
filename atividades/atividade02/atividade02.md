@@ -31,3 +31,14 @@ if (get_id() == 0) then
 |   |   do_nothing();
 |   total = total_parte_1 + total_parte_2;
 ```
+## Questão Extra:
+
+Considere o seguinte código serial:
+
+```
+int numeros[N];
+for (int i = 1; i < N; i++)
+   numeros[i] = numeros[i] + numeros[i-1];
+```
+
+Resolve o mesmo problema para o problema acima. Valendo 0,5 pontos extra na primeira. 
