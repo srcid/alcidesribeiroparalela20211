@@ -1,5 +1,6 @@
 # Atividade 02
 ## Sequencial
+### Correção: 1,0
 ```c
 int total = 0;
 int numeros[N];
