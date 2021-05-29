@@ -63,6 +63,7 @@ if (get_id() == 1) then
 Suponha que p0 e p1 executam um tarefa nas respectivas unidades de processamento.
 Suponha ainda que existe uma função incremente e soma um valor dado à todos os elementos de um conjunto num intervalo.
 ```c++
+int numeros[N];
 int p, r, p1, q, p2;
 bool terminou1 = false;
     
@@ -75,11 +76,11 @@ p2 = q+1;
     
 if (get_id() == 0) {
     while (p1 <= q) {
-        arr[++p] += arr[p];
+        numeros[++p] += numeros[p1-1];
     }
 } else {
     while (p2 <= r) {
-        arr[++p2] += arr[p2];
+        numeros[++p2] += numeros[p2-1];
     }
     
     while (!terminou1);
