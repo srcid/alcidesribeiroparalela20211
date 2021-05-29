@@ -78,6 +78,7 @@ if (get_id() == 0) {
     while (p1 <= q) {
         numeros[++p] += numeros[p1-1];
     }
+    terminou1 = true;
 } else {
     while (p2 <= r) {
         numeros[++p2] += numeros[p2-1];
