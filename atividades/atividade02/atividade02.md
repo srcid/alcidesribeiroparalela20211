@@ -61,7 +61,7 @@ if (get_id() == 1) then
 ```
 ### O que importa é o array?
 Suponha que p0 e p1 executam um tarefa nas respectivas unidades de processamento.
-Suponha ainda que existe uma função incremente e para soma um valor dado a todos os elementos de um conjunto num intervalo.
+Suponha ainda que existe uma função incremente e soma um valor dado à todos os elementos de um conjunto num intervalo.
 ```c++
 int p, r, p1, q, p2;
 bool terminou1 = false;
