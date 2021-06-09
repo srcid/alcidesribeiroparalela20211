@@ -18,10 +18,10 @@ int accumulate(int* first, int* last, int s) {
     return acc;
 }
 
-int parallel_sum(int *arr, int arrSize) {
-    int avaliable_threads = omp_get_max_threads(),
-        subArrSize = (double)ceil((double)arrSize / avaliable_threads),
-        *res = (int*)calloc(avaliable_threads, sizeof(int)),
+    int parallel_sum(int *arr, int arrSize) {
+    int nThreads = omp_get_max_threads(),
+        subArrSize = (double)ceil((double)arrSize / nThreads),
+        *res = (int*)calloc(nThreads, sizeof(int)),
         acc;
 
     #pragma omp parallel
@@ -33,7 +33,7 @@ int parallel_sum(int *arr, int arrSize) {
         }
     }
 
-    acc = accumulate(res, res+avaliable_threads, 0);
+    acc = accumulate(res, res+nThreads, 0);
 
     free(res);
 

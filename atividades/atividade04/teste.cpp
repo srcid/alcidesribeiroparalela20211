@@ -4,9 +4,9 @@
 using namespace std;
 
 int parallel_sum(vector<int>& arr) {
-    int avaliable_threads = omp_get_max_threads(),
-        subArrSize = ceil((double)arr.size() / avaliable_threads),
-        *res = (int*)calloc(avaliable_threads, sizeof(int)),
+    int nThreads = omp_get_max_threads(),
+        subArrSize = ceil((double)arr.size() / nThreads),
+        *res = (int*)calloc(nThreads, sizeof(int)),
         acc;
 
     #pragma omp parallel
@@ -18,7 +18,7 @@ int parallel_sum(vector<int>& arr) {
         }
     }
 
-    acc = accumulate(res, res+avaliable_threads, 0);
+    acc = accumulate(res, res+nThreads, 0);
 
     free(res);
 

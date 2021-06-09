@@ -36,9 +36,6 @@ void* sum(void* s_ptr) {
     return NULL;
 }
 
-/**
- * This function presuppose that arrSize is bigger or equalst to numberOfThreads
- */ 
 int parallel_sum(int* arr, int arrSize) {
 
     int numberOfThreads = get_nprocs(),
