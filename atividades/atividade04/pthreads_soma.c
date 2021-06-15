@@ -1,3 +1,5 @@
+
+// Correção: 0,5 pontos
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
