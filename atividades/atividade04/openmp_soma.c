@@ -1,3 +1,5 @@
+
+// Correção: OK. 0,5 Pontos
 #include <stdio.h>
 #include <math.h>
 #include <omp.h>
@@ -18,7 +20,7 @@ int accumulate(int* first, int* last, int s) {
     return acc;
 }
 
-    int parallel_sum(int *arr, int arrSize) {
+int parallel_sum(int *arr, int arrSize) {
     int nThreads = omp_get_max_threads(),
         subArrSize = (double)ceil((double)arrSize / nThreads),
         *res = (int*)calloc(nThreads, sizeof(int)),

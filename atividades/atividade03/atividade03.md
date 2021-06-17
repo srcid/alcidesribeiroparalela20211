@@ -1,5 +1,7 @@
 # Ativade 03
 
+> Correção: 1,0
+
 ## Questão 01
 ![Rede 2D mesh cortado](mesh_cortado.jpg)
 Temos, então, que a largura de bissecção dessa rede é de 8Mb/s.
