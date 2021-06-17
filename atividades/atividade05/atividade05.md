@@ -60,8 +60,11 @@ Usando matrizes quadradas de $5000 \times 5000$
 # Compilação e uso do programa
 
 ## Compilação
-> clang++ -fompenmp main.cpp
-
+```bash
+clang++ -fompenmp main.cpp
+```
 ## Uso
 Seja A ou 0, 1 ou 2 os algoritimos de paralelos das aborgagens proposta na questão anterior na ordem que foram dispostas e N tamanho da matriz
-> ./a.out N A
+```bash
+./a.out N A
+```
