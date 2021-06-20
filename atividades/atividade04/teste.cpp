@@ -3,9 +3,13 @@
 
 using namespace std;
 
+constexpr int divCeil(int a, int b) {
+    return ((a+b-1)/b);
+}
+
 int parallel_sum(vector<int>& arr) {
     int nThreads = omp_get_max_threads(),
-        subArrSize = ceil((double)arr.size() / nThreads),
+        subArrSize = divCeil(arr.size(), nThreads),
         *res = (int*)calloc(nThreads, sizeof(int)),
         acc;
 
