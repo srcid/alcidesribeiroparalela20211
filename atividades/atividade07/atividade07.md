@@ -19,7 +19,7 @@ nesse caso, cada _chunk_ terá duas iterações e cada _thead_ terá uma quantid
 
 ### static,3
 
-nesse caso, cada _chunk_ terá três iterações e cada _thead_ terá uma quantidade aproximada de _chunks_.
+nesse caso, cada _chunk_ terá aproximadamente três iterações e cada _thead_ terá uma quantidade aproximada de _chunks_.
 
 ![imagem contendo a formula do conjunto de _chunks_ que cada threads receberá](s3.png)
 
