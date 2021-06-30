@@ -1,3 +1,4 @@
+// Correção: 1,0
 #include <bits/stdc++.h>
 #include <omp.h>
 #include <immintrin.h>
@@ -31,14 +32,14 @@ unsigned int getMaxParallel(unsigned int *arr, const unsigned int& n) {
     unsigned int maxVal = arr[0];
 
     #pragma omp parallel for reduction(max:maxVal)
-    {
+//    {
         for (unsigned int i=0; i<n; i++) {
             if (maxVal < arr[i]) {
                 maxVal=arr[i];
             }
             
         }
-    }
+//    }
 
     return maxVal;
 }
