@@ -1,4 +1,9 @@
 # Atividade 07
+
+> Correção: 1,0
+> 
+> Tudo OK!!!
+
 ---
 Supundo para a resulução dos casos abaixo uma máquina com 4 _threads_ e __max__ = 20.
 
