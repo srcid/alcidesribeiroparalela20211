@@ -1,3 +1,4 @@
+// Correção: 1,0
 #include <bits/stdc++.h>
 #include <omp.h>
 
