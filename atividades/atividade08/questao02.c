@@ -46,7 +46,7 @@ void par_qsort(int *data, int lo, int hi, int (*compare)(int a, int b))
         if (hi - l < 1000) {
             par_qsort(data, l, hi, compare);
         } else {
-            #pragma omp task final(hi - l < 1000)
+            #pragma omp task
             par_qsort(data, l, hi, compare);
         }
     }
