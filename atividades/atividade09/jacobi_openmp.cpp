@@ -10,7 +10,7 @@ void printm(double **m, unsigned n)
     unsigned i, j;
     for (i=0; i<n; i++) {
         for (j=0; j<n; j++) {
-            cout << m[i][j] << "\t";
+            cout << fixed << setw(6) << setprecision(3) << setfill('0') << m[i][j] << "\t";
         }
         cout << endl;
     }
@@ -32,12 +32,14 @@ int main(int argc, char const *argv[])
 
     /*allocing memory for m*/
     m = new double*[n];
+    #pragma omp parallel for
     for (i=0; i<n; i++) {
         m[i] = new double[n];
     }
     
     /*allocing memory for m*/
     t = new double*[n];
+    #pragma omp parallel for
     for (i=0; i<n; i++) {
         t[i] = new double[n];
     }
@@ -81,12 +83,14 @@ int main(int argc, char const *argv[])
     }
 
     /*Freeing memory*/
+    #pragma omp parallel for
     for (i=0; i<n; i++) {
         delete[] m[i];
     }
     delete[] m;
 
     /*Freeing memory*/
+    #pragma omp parallel for
     for (i=0; i<n; i++) {
         delete[] t[i];
     }
