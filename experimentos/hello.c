@@ -1,3 +1,4 @@
+// Legal manter uma pasta separada para testes.
 #include <stdio.h>
 #include <omp.h>
 
