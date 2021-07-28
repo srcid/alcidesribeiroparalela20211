@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #include <mpi.h>
 
+#define ECHO 0
+
 using namespace std;
 
 inline int ceildiv(int a, int b)
@@ -17,76 +19,71 @@ int main(int argc, char const *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &id);
     MPI_Comm_size(MPI_COMM_WORLD, &np);
 
-    switch (id)
-    {
-    case 0: {
-        vector<int> arr1(N,1), arr2(N,1), workers(np-1);
-        int tag, res, ans;
+    if (id == root) {
+        vector<double> arr1(N,0.0666), arr2(N,0.01);
+        int i, tag, rg, beg, end;
+        double ans, tmp;
 
         tag = 0;
         ans = 0;
+        rg = ceildiv(N, np-1);
 
-        iota(workers.begin(), workers.end(), 1);
+        for (auto arr : {&arr1, &arr2}) {
+            for (i = 1; i < np; i++) {
+                beg = (i-1)*rg;
+                end = beg + rg;
 
-        for (vector<int> arr : {arr1, arr2}) {
-            int range, beg, end, tmp;
-
-            range = ceildiv(arr.size(), np-1);
-
-            for (int id : workers) {
-                beg = (id-1)*range;
-                end = beg + range;
-                
-                if (end > arr.size()) {
-                    MPI_Send(&arr[beg], range-(end- arr.size()), MPI_INT, id, tag, MPI_COMM_WORLD);
-                } else {
-                    MPI_Send(&arr[beg], range, MPI_INT, id, tag, MPI_COMM_WORLD);
+                if (end > arr->size()) {
+                    if (ECHO) cout << id << ": enviando " << rg - (end - arr->size()) << " to " << i << endl;
+                    MPI_Send(&(*arr)[beg], rg - (end - arr->size()), MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
+                }
+                else {
+                    if (ECHO) cout << id << ": enviando " << rg << " to " << i << endl;
+                    MPI_Send(&(*arr)[beg], rg, MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
                 }
             }
-
-            res = 1;
-
-            for (int id : workers) {
-                MPI_Recv(&tmp, 1, MPI_INT, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, nullptr);
-                res *= tmp;
-            }
-
-            ans += res;
-
             tag++;
         }
 
-        cout << "ans: " << ans << endl;
-
-        break;
-    }
-    default: {
-        vector<int> buf;
-        int acc, tag, count;
-        MPI_Status status;
-        
-        count = ceildiv(N, np-1);
         tag = 0;
 
-        buf.resize(count);
-
-        while (tag < 2) {
-            acc = 1;
-
-            MPI_Recv(&buf[0], count, MPI_INT, root, tag, MPI_COMM_WORLD, &status);
-            MPI_Get_count(&status, MPI_INT, &count);
-
-            for_each(buf.begin(), buf.begin()+count, [&acc](int x) {
-                acc *= x;
-            });
-
-            MPI_Send(&acc, 1, MPI_INT, root, tag, MPI_COMM_WORLD);
-
-            tag++;
+        for (i = 1; i < np; i++) {
+            MPI_Recv(&tmp, 1, MPI_DOUBLE, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, nullptr);
+            ans += tmp;
         }
 
-        break;
-    }
+        if (ECHO) cout << "ans: " << ans << endl;
+
+    } else {
+        vector<double> buf1, buf2;
+        int i, size, tag, count;
+        double acc;
+        MPI_Status status;
+
+        acc = 0;
+        tag = 0;
+        count = ceildiv(N, np-1);
+        buf1.resize(count);
+        buf2.resize(count);
+        
+        for (auto buf : {&buf1, &buf2}) {
+            if (ECHO) cout << id << ": recebeu de root" << endl;
+            
+            MPI_Recv(&(*buf)[0], count, MPI_DOUBLE, root, tag, MPI_COMM_WORLD, &status);
+            tag++;
+        }
+        
+        MPI_Get_count(&status, MPI_DOUBLE, &size);
+
+        for (i=0; i<size; i++) {
+            acc += buf1[i]*buf2[i];
+        }
+
+        tag = 0;
+
+        if (ECHO) cout << id << ": enviando " << acc << endl;
+
+        MPI_Send(&acc, 1, MPI_DOUBLE, root, tag, MPI_COMM_WORLD);
     }
 
     MPI_Finalize();
