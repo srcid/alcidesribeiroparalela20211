@@ -22,7 +22,9 @@ int main(int argc, char const *argv[])
     if (id == root) {
         vector<double> arr1(N,0.0666), arr2(N,0.01);
         int i, tag, rg, beg, end;
-        double ans, tmp;
+        double ans, tmp, wtime_begin, wtime_end;
+
+        wtime_begin = MPI_Wtime();
 
         tag = 0;
         ans = 0;
@@ -52,7 +54,11 @@ int main(int argc, char const *argv[])
             ans += tmp;
         }
 
+        wtime_end = MPI_Wtime();
+
         if (ECHO) cout << "ans: " << ans << endl;
+
+        cout << "size: " << np << " | elapsed: " << wtime_end - wtime_begin << endl;
 
     } else {
         vector<double> buf1, buf2;
