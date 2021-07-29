@@ -1,0 +1,31 @@
+Para N = 1.000.000
+local:
+size: 2 | elapsed: 0.00922119
+size: 4 | elapsed: 0.00472165
+size: 8 | elapsed: 0.00544451
+aws:
+size: 2 | elapsed: 0.0106423
+size: 4 | elapsed: 0.00596954
+size: 8 | elapsed: 0.0055274
+
+Para N = 214.748.364
+aws:
+size: 2  | elapsed: 2.44198
+size: 4  | elapsed: 1.50063
+size: 8  | elapsed: 1.28287
+size: 16 | elapsed: 1.70642
+
+Para N = 300.000.000
+aws:
+size: 2 | elapsed: 4.46246
+size: 4 | elapsed: 2.08368
+size: 8 | elapsed: 1.79721
+size: 16 | elapsed: 2.40042
+
+Para N = 500.000.000
+aws:
+size: 2 | elapsed: 6.51177
+size: 4 | elapsed: 3.497
+size: 8 | elapsed: 2.91253
+size: 16 | elapsed: 4.24605
+
