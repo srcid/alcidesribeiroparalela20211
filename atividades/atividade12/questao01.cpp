@@ -1,3 +1,4 @@
+// Correção: 2,0
 #include <bits/stdc++.h>
 #include <mpi.h>
 
