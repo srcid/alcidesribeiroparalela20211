@@ -1,3 +1,5 @@
+// Correção: 1,0
+// Tudo OK!!!
 #include <stdio.h>
 #include <mpi.h>
 
