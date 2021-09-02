@@ -1,3 +1,5 @@
+// Correção: 2,0
+// Tudo OK!!!
 #include <iostream>
 #include <vector>
 #include <mpi.h>
