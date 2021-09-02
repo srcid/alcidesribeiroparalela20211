@@ -1,3 +1,4 @@
+// Correção: 0,5
 /**
  * Instruções de compilação:
  * mpic++ -fopenmp <cppfile>
