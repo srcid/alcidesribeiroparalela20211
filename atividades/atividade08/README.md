@@ -3,7 +3,7 @@
 Max = 50, para todos os testes.
 
 |estratégia|ordem|schedule|tempo|
-|---|---|---|---|---|---|
+|---|---|---|---|
 |task|ascendente|não há|1m56,98s|
 |task|descendente|não há|1m53,63s|
 |for|ascendente|dynamic,2|2m01,17s|
